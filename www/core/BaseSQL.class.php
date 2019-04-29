@@ -21,19 +21,13 @@ class BaseSQL
     }
 
 
-    public function setId($id)
+    public function setId(int $id): void
     {
         $this->id = $id;
         $this->getOneBy(["id"=>$id], true);
     }
 
-
-    /**
-     * @param array $where the where clause
-     * @param bool $object if it will return an array of results ou an object
-     * @return mixed
-     */
-    public function getOneBy(array $where, $object = false)
+    public function getOneBy(array $where, $object = false): ?array
     {
         $sqlWhere = [];
         foreach ($where as $key => $value) {
@@ -48,13 +42,17 @@ class BaseSQL
             $query->setFetchMode(PDO::FETCH_ASSOC);
         }
 
-        $query->execute($where);
-        return $query->fetch();
+        try{
+            $query->execute($where);
+            return $query->fetch();
+        } catch (\Exception $exception){
+            echo 'Error'.$exception->getMessage();
+            return null;
+        }
+
     }
 
-
-
-    public function save()
+    public function save(): void
     {
         $dataObject = get_object_vars($this);
         $dataChild = array_diff_key($dataObject, get_class_vars(get_class()));
