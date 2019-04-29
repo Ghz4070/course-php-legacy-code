@@ -1,4 +1,10 @@
 <?php
+declare(strict_types=1);
+
+namespace models;
+
+use core\BaseSQL;
+
 class Users extends BaseSQL
 {
     public $id = null;

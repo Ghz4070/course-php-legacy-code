@@ -1,4 +1,8 @@
 <?php
+declare(strict_types=1);
+
+namespace core;
+
 class Routing
 {
     public static $routeFile = "routes.yml";
@@ -17,7 +21,7 @@ class Routing
             return ["c"=>null, "a"=>null,"cPath"=>null ];
         }
 
-        return ["c"=>$c, "a"=>$a,"cPath"=>$cPath ];
+        return ["c"=> '\\controllers\\'.$c, "a"=>$a,"cPath"=>$cPath ];
     }
 
 

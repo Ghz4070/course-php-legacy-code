@@ -1,4 +1,10 @@
 <?php
+declare(strict_types=1);
+
+namespace controllers;
+
+use core\View;
+
 class PagesController
 {
     public function defaultAction()
