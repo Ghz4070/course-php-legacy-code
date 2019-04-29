@@ -3,7 +3,7 @@ services:
   web:
     build: docker/site
     ports:
-      - 80:80
+      - 81:80
     volumes:
      - ./www:/var/www/html/
      - ./docker/server/000-default.conf:/etc/apache2/sites-available/000-default.conf
@@ -20,6 +20,8 @@ services:
       MYSQL_USER: root
     volumes:
       - ./import.sql:/docker-entrypoint-initdb.d/import.sql
+    ports:
+      - 3307:3306
     restart: always
 
   phpmyadmin:
