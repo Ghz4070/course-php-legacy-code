@@ -31,10 +31,8 @@ class Routing implements RoutingInterface
         $routes = yaml_parse_file(self::$routeFile);
 
         foreach ($routes as $slug => $controllerAndAction) {
-            if (!empty($controllerAndAction['controller']) &&
-                !empty($controllerAndAction['action']) &&
-                $controllerAndAction['controller'] == $controller &&
-                $controllerAndAction['action'] == $action) {
+            if (!empty($controllerAndAction['controller']) && !empty($controllerAndAction['action']) &&
+                $controllerAndAction['controller'] == $controller && $controllerAndAction['action'] == $action) {
                 return $slug;
             }
         }
