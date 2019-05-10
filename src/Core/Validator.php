@@ -1,9 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace core;
+namespace Core;
 
-class Validator
+use Models\ValidatorInterface;
+
+class Validator implements ValidatorInterface
 {
     public $errors = [];
 
@@ -13,8 +15,6 @@ class Validator
             die("Tentative : faille XSS");
         }
 
-
-            
         foreach ($config["data"] as $name => $info) {
             if (!isset($data[$name])) {
                 die("Tentative : faille XSS");
@@ -44,7 +44,6 @@ class Validator
             }
         }
     }
-
 
     public static function notEmpty(string $string): bool
     {

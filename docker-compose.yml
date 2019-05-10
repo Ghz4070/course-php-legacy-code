@@ -5,7 +5,7 @@ services:
     ports:
       - 81:80
     volumes:
-     - ./www:/var/www/html/
+     - ./src:/var/src/html/
      - ./docker/server/000-default.conf:/etc/apache2/sites-available/000-default.conf
      - ./docker/server/apache2.conf:/etc/apache2/apache2.conf
      - ./docker/server/php.ini:/usr/local/etc/php/php.ini

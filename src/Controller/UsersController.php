@@ -3,9 +3,7 @@ declare(strict_types=1);
 
 namespace controllers;
 
-use core\Validator;
-use core\View;
-use models\Users;
+use Entity\Users;
 
 class UsersController
 {
