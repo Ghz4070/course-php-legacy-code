@@ -3,9 +3,7 @@ declare(strict_types=1);
 
 namespace Core;
 
-use Models\ViewInterface;
-
-class View implements ViewInterface
+class View
 {
     private $view;
     private $template;
@@ -19,7 +17,7 @@ class View implements ViewInterface
 
     public function setView(string $view): void
     {
-        $viewPath = 'views/' . $view . '.view.php';
+        $viewPath = 'Views/' . $view . '.php';
         if (file_exists($viewPath)) {
             $this->view = $viewPath;
         } else {
@@ -29,7 +27,7 @@ class View implements ViewInterface
 
     public function setTemplate(string $template): void
     {
-        $templatePath = 'views/templates/' . $template . '.tpl.php';
+        $templatePath = 'Views/templates/' . $template . '.php';
         if (file_exists($templatePath)) {
             $this->template = $templatePath;
         } else {
@@ -37,9 +35,9 @@ class View implements ViewInterface
         }
     }
 
-    public function addModal(string $modal,array $config): void
+    public function addModal(string $modal, array $config): void
     {
-        $modalPath = 'views/modals/' . $modal . '.mod.php';
+        $modalPath = 'Views/modals/' . $modal . '.php';
         if (file_exists($modalPath)) {
             include $modalPath;
         } else {

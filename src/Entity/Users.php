@@ -4,24 +4,23 @@ declare(strict_types=1);
 namespace Entity;
 
 use Models\UsersInterface;
-use Repository\UsersRepository;
 use ValueObject\Identity;
+use Repository\UsersRepository;
 
 class Users implements UsersInterface
 {
     private $userRepository;
-
-    public $id = null;
-    public $email;
-    public $pwd;
-    public $role = 1;
-    public $status = 0;
-    public $identity;
+    private $id = null;
+    private $email;
+    private $pwd;
+    private $role = 1;
+    private $status = 0;
+    private $identity;
 
     public function __construct(UsersRepository $usersRepository, Identity $identity)
     {
-        $this->userRepository=$usersRepository;
-        $this->identity=$identity;
+        $this->userRepository = $usersRepository;
+        $this->identity = $identity;
     }
 
     public function setId(int $id): void

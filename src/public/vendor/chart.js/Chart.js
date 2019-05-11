@@ -1893,7 +1893,7 @@ defaults._set('bar', {
 		xAxes: [{
 			type: 'category',
 
-			// Specific to Bar Controller
+			// Specific to Bar Controllers
 			categoryPercentage: 0.8,
 			barPercentage: 0.9,
 
@@ -1928,7 +1928,7 @@ defaults._set('horizontalBar', {
 			position: 'left',
 			type: 'category',
 
-			// Specific to Horizontal Bar Controller
+			// Specific to Horizontal Bar Controllers
 			categoryPercentage: 0.8,
 			barPercentage: 0.9,
 
@@ -3634,7 +3634,7 @@ defaults._set('scatter', {
 
 module.exports = function(Chart) {
 
-	// Scatter charts use line Controller
+	// Scatter charts use line Controllers
 	Chart.controllers.scatter = Chart.controllers.line;
 
 };
@@ -3908,7 +3908,7 @@ module.exports = function(Chart) {
 			me._bufferedRender = false;
 
 			/**
-			 * Provided for backward compatibility, Chart and Chart.Controller have been merged,
+			 * Provided for backward compatibility, Chart and Chart.Controllers have been merged,
 			 * the "instance" still need to be defined since it might be called from plugins.
 			 * @prop Chart#chart
 			 * @deprecated since version 2.6.0
@@ -3962,7 +3962,7 @@ module.exports = function(Chart) {
 				me.resize(true);
 			}
 
-			// Make sure scales have IDs and are built before we build any Controller.
+			// Make sure scales have IDs and are built before we build any Controllers.
 			me.ensureScalesHaveIDs();
 			me.buildOrUpdateScales();
 			me.initToolTip();
@@ -4203,17 +4203,17 @@ module.exports = function(Chart) {
 			// In case the entire data object changed
 			me.tooltip._data = me.data;
 
-			// Make sure dataset Controller are updated and new Controller are reset
+			// Make sure dataset Controllers are updated and new Controllers are reset
 			var newControllers = me.buildOrUpdateControllers();
 
-			// Make sure all dataset Controller have correct meta data counts
+			// Make sure all dataset Controllers have correct meta data counts
 			helpers.each(me.data.datasets, function(dataset, datasetIndex) {
 				me.getDatasetMeta(datasetIndex).controller.buildOrUpdateElements();
 			}, me);
 
 			me.updateLayout();
 
-			// Can only reset the new Controller after the scales have been updated
+			// Can only reset the new Controllers after the scales have been updated
 			if (me.options.animation && me.options.animation.duration) {
 				helpers.each(newControllers, function(controller) {
 					controller.reset();
@@ -4567,7 +4567,7 @@ module.exports = function(Chart) {
 
 			me.stop();
 
-			// dataset Controller need to cleanup associated data
+			// dataset Controllers need to cleanup associated data
 			for (i = 0, ilen = me.data.datasets.length; i < ilen; ++i) {
 				me.destroyDatasetMeta(i);
 			}
@@ -4840,7 +4840,7 @@ module.exports = function(Chart) {
 		delete array._chartjs;
 	}
 
-	// Base class for all dataset Controller (line, bar, etc)
+	// Base class for all dataset Controllers (line, bar, etc)
 	Chart.DatasetController = function(chart, datasetIndex) {
 		this.initialize(chart, datasetIndex);
 	};
@@ -11159,7 +11159,7 @@ function computeBoundary(source) {
 
 	// Backward compatibility: until v3, we still need to support boundary values set on
 	// the model (scaleTop, scaleBottom and scaleZero) because some external plugins and
-	// Controller might still use it (e.g. the Smith chart).
+	// Controllers might still use it (e.g. the Smith chart).
 
 	if (fill === 'start') {
 		target = model.scaleBottom === undefined ? scale.bottom : model.scaleBottom;

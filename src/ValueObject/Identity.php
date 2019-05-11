@@ -3,15 +3,14 @@ declare(strict_types=1);
 
 namespace ValueObject;
 
-use Models\IdentityInterface;
-
-class Identity implements IdentityInterface
+class Identity
 {
     public $lastname;
     public $firstname;
 
     public function __construct()
     {
+
     }
 
     public function setLastname(string $lastname): void

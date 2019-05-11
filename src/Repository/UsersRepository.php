@@ -4,13 +4,15 @@ declare(strict_types=1);
 namespace Repository;
 
 use Entity\Users;
+use Exception;
+use PDO;
 
 class UsersRepository
 {
     private $pdo;
     private $table;
 
-    public function __construct(\PDO $pdo)
+    public function __construct(PDO $pdo)
     {
         $this->pdo = $pdo;
         $this->table = get_called_class();
@@ -26,15 +28,15 @@ class UsersRepository
         $query = $this->pdo->prepare($sql);
 
         if ($object) {
-            $query->setFetchMode(\PDO::FETCH_INTO, $this);
+            $query->setFetchMode(PDO::FETCH_INTO, $this);
         } else {
-            $query->setFetchMode(\PDO::FETCH_ASSOC);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
         }
 
         try {
             $query->execute($where);
             return $query->fetch();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
             return null;
         }
@@ -48,7 +50,7 @@ class UsersRepository
         $data = array_merge($dataObjectUser, $dataObjectIdentity);
         $dataChild = array_diff_key($dataObject, get_class_vars(get_class()));
 
-        if (is_null($data['id'])) {
+        if ($data['id'] === null) {
             $sql = 'INSERT INTO Users' . ' ( ' .
                 implode(',', array_keys($data)) . ') VALUES ( :' .
                 implode(',:', array_keys($data)) . ')';
@@ -58,7 +60,7 @@ class UsersRepository
         } else {
             $sqlUpdate = [];
             foreach ($data as $key => $value) {
-                if ('id' != $key) {
+                if ('id' !== $key) {
                     $sqlUpdate[] = $key . '=:' . $key;
                 }
             }

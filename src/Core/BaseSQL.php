@@ -4,22 +4,24 @@ declare(strict_types=1);
 namespace Core;
 
 use Models\PdoInterface;
+use PDO;
+use Exception;
 
 class BaseSQL implements PdoInterface
 {
-    protected $pdo;
+    private $pdo;
 
-    public function __construct(string $dbdriver, string $dbhost, string $dbname, string $dbuser, string $dbpwd)
+    public function __construct(string $dbDriver, string $dbHost, string $dbName, string $dbUser, string $dbPassword)
     {
         try {
-            $this->pdo = new \PDO($dbdriver . ':host=' . $dbhost . ';dbname=' . $dbname, $dbuser, $dbpwd);
-            $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        } catch (\Exception $e) {
+            $this->pdo = new PDO($dbDriver . ':host=' . $dbHost . ';dbName=' . $dbName, $dbUser, $dbPassword);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (Exception $e) {
             die('Erreur SQL : ' . $e->getMessage());
         }
     }
 
-    public function getPdo(): \PDO
+    public function getPdo(): PDO
     {
         return $this->pdo;
     }

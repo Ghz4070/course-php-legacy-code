@@ -31,16 +31,21 @@ class UsersForm
                     'error' => 'Le prénom doit faire entre 2 et 50 caractères',
                 ],
 
-                'lastname' => ['type' => 'text', 'placeholder' => 'Votre nom', 'required' => true, 'class' => 'form-control', 'id' => 'lastname', 'minlength' => 2, 'maxlength' => 100,
+                'lastname' => ['type' => 'text', 'placeholder' => 'Votre nom', 'required' => true,
+                    'class' => 'form-control', 'id' => 'lastname', 'minlength' => 2, 'maxlength' => 100,
                     'error' => 'Le nom doit faire entre 2 et 100 caractères',],
 
-                'email' => ['type' => 'email', 'placeholder' => 'Votre email', 'required' => true, 'class' => 'form-control', 'id' => 'email', 'maxlength' => 250,
+                'email' => ['type' => 'email', 'placeholder' => 'Votre email', 'required' => true,
+                    'class' => 'form-control', 'id' => 'email', 'maxlength' => 250,
                     'error' => "L'email n'est pas valide ou il dépasse les 250 caractères",],
 
-                'pwd' => ['type' => 'password', 'placeholder' => 'Votre mot de passe', 'required' => true, 'class' => 'form-control', 'id' => 'pwd', 'minlength' => 6,
+                'pwd' => ['type' => 'password', 'placeholder' => 'Votre mot de passe', 'required' => true,
+                    'class' => 'form-control', 'id' => 'pwd', 'minlength' => 6,
                     'error' => 'Le mot de passe doit faire au minimum 6 caractères avec des minuscules, majuscules et chiffres',],
 
-                'pwdConfirm' => ['type' => 'password', 'placeholder' => 'Confirmation', 'required' => true, 'class' => 'form-control', 'id' => 'pwdConfirm', 'confirm' => 'pwd', 'error' => 'Les mots de passe ne correspondent pas'],
+                'pwdConfirm' => ['type' => 'password', 'placeholder' => 'Confirmation', 'required' => true,
+                    'class' => 'form-control', 'id' => 'pwdConfirm', 'confirm' => 'pwd',
+                    'error' => 'Les mots de passe ne correspondent pas'],
             ],
         ];
     }
@@ -57,10 +62,12 @@ class UsersForm
                 'reset' => 'Annuler',],
 
             'data' => [
-                'email' => ['type' => 'email', 'placeholder' => 'Votre email', 'required' => true, 'class' => 'form-control', 'id' => 'email',
+                'email' => ['type' => 'email', 'placeholder' => 'Votre email', 'required' => true,
+                    'class' => 'form-control', 'id' => 'email',
                     'error' => "L'email n'est pas valide",],
 
-                'pwd' => ['type' => 'password', 'placeholder' => 'Votre mot de passe', 'required' => true, 'class' => 'form-control', 'id' => 'pwd',
+                'pwd' => ['type' => 'password', 'placeholder' => 'Votre mot de passe', 'required' => true,
+                    'class' => 'form-control', 'id' => 'pwd',
                     'error' => 'Veuillez préciser un mot de passe',],
             ],
         ];

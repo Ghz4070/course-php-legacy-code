@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace controllers;
+namespace Controllers;
 
-use core\View;
+use Core\View;
 
 class PagesController
 {

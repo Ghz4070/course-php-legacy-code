@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use Core\Routing;
 
-function myAutoloader($class)
+function myAutoloader(string $class): void
 {
     $className = substr($class, strpos($class, '\\') + 1);
     $classPath = "Core/" . $className . ".php";
@@ -41,9 +41,9 @@ $container += require 'config/di.global.php';
 // Vérifie l'existence du fichier et de la classe pour charger le controlleur
 if (file_exists($routes['controllerPath'])) {
     include $routes['controllerPath'];
-    if (class_exists('\\Controller\\' . $routes['controller'])) {
+    if (class_exists('\\Controllers\\' . $routes['controller'])) {
         //instancier dynamiquement le controller
-        $cObject = $container['Controller\\' . $routes['controller']]($container);
+        $cObject = $container['Controllers\\' . $routes['controller']]($container);
         //vérifier que la méthode (l'action) existe
         if (method_exists($cObject, $routes['action'])) {
             //appel dynamique de la méthode

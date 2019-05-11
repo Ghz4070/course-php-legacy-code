@@ -18,7 +18,7 @@ class Routing implements RoutingInterface
             }
             $controller = ucfirst($routes[$slug]['controller']) . 'Controller';
             $action = $routes[$slug]['action'] . 'Action';
-            $controllerPath = 'Controller/' . $controller . '.php';
+            $controllerPath = 'Controllers/' . $controller . '.php';
         } else {
             return ['controller' => null, 'action' => null, 'controllerPath' => null];
         }
