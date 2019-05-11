@@ -10,7 +10,6 @@ use Form\UsersForm;
 use Repository\UsersRepository;
 use ValueObject\Identity;
 
-
 class UsersController
 {
     private $user;
