@@ -1,5 +1,7 @@
 <?php
 
+namespace config;
+
 return [
     'database' => [
         'driver' => 'mysql',

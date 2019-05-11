@@ -6,5 +6,5 @@ interface RoutingInterface
 {
     public static function getRoute(string $slug): array;
 
-    public static function getSlug(string $a, string $c): ?string;
+    public static function getSlug(string $controller, string $action): ?string;
 }

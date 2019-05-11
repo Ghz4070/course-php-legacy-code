@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace config;
+
 use Core\BaseSQL;
 use Entity\Users;
 use Repository\UsersRepository;

@@ -8,6 +8,7 @@ use Core\View;
 use Entity\Users;
 use Form\UsersForm;
 use Repository\UsersRepository;
+use ValueObject\Identity;
 
 
 class UsersController
@@ -28,38 +29,36 @@ class UsersController
 
     public function addAction(): void
     {
-        $user = new Users();
+        $user = new UsersForm();
         $form = $user->getRegisterForm();
 
-        $v = new View("addUser", "front");
-        $v->assign("form", $form);
+        $view = new View("addUser", "front");
+        $view->assign("form", $form);
     }
 
     public function saveAction(): void
     {
-        $user = new Users();
-        $form = $user->getRegisterForm();
-        $method = strtoupper($form["config"]["method"]);
-        $data = $GLOBALS["_" . $method];
-
+        $formulaire = new UsersForm();
+        $form = $formulaire->getRegisterForm();
+        $identity = new Identity();
+        $users = new Users($this->userRepository, $identity);
+        $method = strtoupper($form['config']['method']);
+        $data = $GLOBALS['_' . $method];
 
         if ($_SERVER['REQUEST_METHOD'] == $method && !empty($data)) {
             $validator = new Validator($form, $data);
-            $form["errors"] = $validator->errors;
-
+            $form['errors'] = $validator->errors;
             if (empty($errors)) {
-                $user->setFirstname($data["firstname"]);
-                $user->setLastname($data["lastname"]);
-                $user->setEmail($data["email"]);
-                $user->setPwd($data["pwd"]);
-                $user->save();
+                $identity->setFirstname($data['firstname']);
+                $identity->setLastname($data['lastname']);
+                $users->setEmail($data['email']);
+                $users->setPwd($data['pwd']);
+                $this->userRepository->save($users);
             }
         }
-
-        $v = new View("addUser", "front");
-        $v->assign("form", $form);
+        $view = new View('addUser', 'front');
+        $view->assign('form', $form);
     }
-
 
     public function loginAction(): void
     {
@@ -99,6 +98,6 @@ class UsersController
 
     public function forgetPasswordAction(): void
     {
-        $v = new View("forgetPasswordUser", "front");
+        $view = new View("forgetPasswordUser", "front");
     }
 }

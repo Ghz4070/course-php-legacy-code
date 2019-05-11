@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Form;
 
 use Core\Routing;
+use Models\UsersFormInterface;
 
-class UsersForm
+class UsersForm implements UsersFormInterface
 {
     public function getRegisterForm(): array
     {
